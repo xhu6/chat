@@ -1,10 +1,10 @@
 import "./App.css";
-import { Home } from "./Pages/Home";
+import { Chat } from "./Pages/Chat";
 
 function App() {
   return (
     <div>
-      <Home></Home>
+      <Chat></Chat>
     </div>
   );
 }
