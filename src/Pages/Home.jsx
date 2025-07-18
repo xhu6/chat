@@ -34,7 +34,7 @@ export function Home() {
 
       <div className="profile-grid">
         {profiles.map((person) => (
-          <Profile person={person} key={person.id} />
+          <Profile person={person} key={person.id} />  
         ))}
       </div>
     </div>

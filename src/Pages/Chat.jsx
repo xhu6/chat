@@ -1,6 +1,6 @@
 import { Message } from "../Components/Message";
 
-export function Chat() {
+export function Chat( person ) {
   const messages = [
     { text: "Winston...", time: "10:20" },
     { text: "...", time: "10:22" },
@@ -17,7 +17,7 @@ export function Chat() {
           alt="John Wick's profile picture."
         />
         <p className="content-center text-3xl font-bold text-white">
-          John Wick
+          {person}
         </p>
       </div>
 
