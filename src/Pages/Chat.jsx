@@ -33,9 +33,16 @@ export function Chat() {
       <div className="flex flex-none content-center gap-4 bg-slate-800 p-4">
         <div
           contentEditable="true"
-          className="max-h-40 flex-1 resize-none overflow-auto bg-white p-2 text-2xl"
+          className="max-h-40 flex-1 resize-none overflow-auto bg-white p-4 text-xl"
+          id="messageBox"
         ></div>
-        <button className="h-14 w-14 flex-none rounded-2xl bg-slate-200">
+        <button
+          className="h-14 w-14 flex-none rounded-2xl bg-slate-200"
+          // Bit inefficient but oh well...
+          onClick={() =>
+            alert(document.getElementById("messageBox").textContent)
+          }
+        >
           SEND
         </button>
       </div>
