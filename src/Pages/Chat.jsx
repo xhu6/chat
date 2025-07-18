@@ -2,30 +2,34 @@ import { Message } from "../Components/Message";
 
 export function Chat() {
   const messages = [
-    { text: "Winston...", time: "10:20"},
-    { text: "...", time: "10:22"},
-    { text: "Winston...", time: "10:26"},
-    { text: "Consequences.", time: "19:51"}
+    { text: "Winston...", time: "10:20" },
+    { text: "...", time: "10:22" },
+    { text: "Winston...", time: "10:26" },
+    { text: "Consequences.", time: "19:51" },
   ];
 
   return (
-    <div className=" bg-slate-900 h-screen flex-col flex">
-      <div className="bg-slate-800 p-4 gap-4 flex-none flex">
+    <div className="flex h-screen flex-col bg-slate-900">
+      <div className="flex flex-none gap-4 bg-slate-800 p-4">
         <img
           className="h-12 w-12"
           src="/vite.svg"
           alt="John Wick's profile picture."
         />
-        <p className="text-3xl content-center font-bold text-white">John Wick</p>
+        <p className="content-center text-3xl font-bold text-white">
+          John Wick
+        </p>
       </div>
 
-      <div className="pt-10 flex-1">
-        {messages.map((msg) => <Message msg={msg}></Message>)}
+      <div className="flex-1 pt-10">
+        {messages.map((msg) => (
+          <Message msg={msg}></Message>
+        ))}
       </div>
 
-      <div className="bg-slate-800 flex-none content-center p-4 flex gap-4">
-        <input type="text" className="bg-white text-2xl p-2 flex-1"/>
-        <button className="flex-none bg-slate-200 rounded-2xl p-3">SEND</button>
+      <div className="flex flex-none content-center gap-4 bg-slate-800 p-4">
+        <input type="text" className="flex-1 bg-white p-2 text-2xl" />
+        <button className="flex-none rounded-2xl bg-slate-200 p-3">SEND</button>
       </div>
     </div>
   );
