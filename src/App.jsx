@@ -2,7 +2,7 @@ import "./App.css";
 import { Home } from "./Pages/Home";
 import { Settings } from "./Pages/Settings";
 import { Chat } from "./Pages/Chat";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 
 function App() {
   return (
