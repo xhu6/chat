@@ -1,13 +1,22 @@
 export function Settings() {
-    return (
-        <div>
-            <h1>Name</h1>
-            <img
-            className="h-12 w-12"
-            src="/vite.svg"
-            alt="John Wick's profile picture."
-            />
-            <p>Bio</p>
+  return (
+    <div className="h-screen bg-slate-800 px-4 pt-20">
+      <h1 className="mb-10 text-4xl font-bold text-white">Settings</h1>
+      <div className="flex flex-col gap-10">
+        <img
+          className="mx-auto h-24 w-24"
+          src="/vite.svg"
+          alt="John Wick's profile picture."
+        />
+
+        <div className="rounded-2xl bg-white p-4" contentEditable="true">
+          Name
         </div>
-    );
+
+        <div className="rounded-2xl bg-white p-4" contentEditable="true">
+          Description
+        </div>
+      </div>
+    </div>
+  );
 }
