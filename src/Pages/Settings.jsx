@@ -2,9 +2,12 @@ import { Back } from "../Components/Back";
 
 export function Settings() {
   return (
-    <div className="h-screen bg-slate-800 px-4 pt-20">
-      <Back></Back>
-      <h1 className="mb-10 text-4xl font-bold text-white">Settings</h1>
+    <div className="h-screen bg-slate-800 p-4">
+      <div className="flex gap-4 p-2">
+        <Back></Back>
+        <p className="content-center text-4xl font-bold text-white">Settings</p>
+      </div>
+
       <div className="flex flex-col gap-10">
         <img
           className="mx-auto h-24 w-24"
