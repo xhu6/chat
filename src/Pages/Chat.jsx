@@ -28,8 +28,13 @@ export function Chat() {
       </div>
 
       <div className="flex flex-none content-center gap-4 bg-slate-800 p-4">
-        <input type="text" className="flex-1 bg-white p-2 text-2xl" />
-        <button className="flex-none rounded-2xl bg-slate-200 p-3">SEND</button>
+        <div
+          contentEditable="true"
+          className="max-h-40 flex-1 resize-none overflow-auto bg-white p-2 text-2xl"
+        ></div>
+        <button className="h-14 w-14 flex-none rounded-2xl bg-slate-200">
+          SEND
+        </button>
       </div>
     </div>
   );
