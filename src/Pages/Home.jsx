@@ -21,7 +21,7 @@ export function Home() {
   return (
     <div className="home flex h-screen flex-col bg-slate-900">
         <div className="flex flex-none gap-4 bg-slate-700 p-4 justify-center">
-          <form onSubmit={handleSearch} className="search-form flex gap-2 border">
+          <form onSubmit={handleSearch} className="search-form flex gap-2 border p-2 rounded-xl">
             <input
             type="text"
             placeholder="Search"
@@ -35,7 +35,7 @@ export function Home() {
             <Link to={'/Settings'} className="nav-link text-white text-xl font-medium hover:text-slate-200">...</Link>
           </form>
         </div>
-      <div className="profile-grid">
+      <div className="flex-col gap-4">
         {profiles.map((person) => (
           <Profile person={person} key={person.id} />  
         ))}
