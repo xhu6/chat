@@ -1,6 +1,9 @@
+import { Back } from "../Components/Back";
+
 export function Settings() {
   return (
     <div className="h-screen bg-slate-800 px-4 pt-20">
+      <Back></Back>
       <h1 className="mb-10 text-4xl font-bold text-white">Settings</h1>
       <div className="flex flex-col gap-10">
         <img

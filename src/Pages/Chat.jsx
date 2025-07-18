@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { Message } from "../Components/Message";
+import { Back } from "../Components/Back";
 
 export function Chat() {
   const { userId } = useParams();
@@ -14,6 +15,7 @@ export function Chat() {
   return (
     <div className="flex h-screen flex-col bg-slate-900">
       <div className="flex flex-none gap-4 bg-slate-800 p-4">
+        <Back></Back>
         <img
           className="h-12 w-12"
           src="/vite.svg"
