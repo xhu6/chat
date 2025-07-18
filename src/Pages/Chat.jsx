@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";  
+import { useParams } from "react-router-dom";
 import { Message } from "../Components/Message";
 
 export function Chat() {
@@ -19,9 +19,7 @@ export function Chat() {
           src="/vite.svg"
           alt="John Wick's profile picture."
         />
-        <p className="content-center text-3xl font-bold text-white">
-          {userId}
-        </p>
+        <p className="content-center text-3xl font-bold text-white">{userId}</p>
       </div>
 
       <div className="flex-1 pt-10">
