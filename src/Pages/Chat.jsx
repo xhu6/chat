@@ -7,17 +7,18 @@ export function Chat() {
   const { userId } = useParams();
 
   const [messages, setMessages] = useState([
-    { text: "Winston...", time: "10:20" },
-    { text: "...", time: "10:22" },
-    { text: "Winston...", time: "10:26" },
-    { text: "Consequences.", time: "19:51" },
+    { text: "Consequences.", time: 0 },
   ]);
+
+  function addMessage(text, time) {
+    setMessages([...messages, { text: text, time: time }]);
+  }
 
   function sendMessage() {
     let data = document.getElementById("messageBox").textContent;
     if (data.length == 0) return;
 
-    setMessages([...messages, { text: data, time: "00:00" }]);
+    addMessage(data, Date.now());
   }
 
   return (
