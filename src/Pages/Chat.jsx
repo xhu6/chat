@@ -21,7 +21,9 @@ export function Chat() {
           src="/vite.svg"
           alt="John Wick's profile picture."
         />
-        <p className="content-center text-3xl font-bold text-white">{userId}</p>
+        <p className="content-center text-3xl font-bold text-gray-200">
+          {userId}
+        </p>
       </div>
 
       <div className="flex-1 pt-10">
@@ -30,20 +32,20 @@ export function Chat() {
         ))}
       </div>
 
-      <div className="flex flex-none content-center gap-4 bg-slate-800 p-4">
+      <div className="flex flex-none content-center gap-4 p-4">
         <div
           contentEditable="true"
-          className="max-h-40 flex-1 resize-none overflow-auto bg-white p-4 text-xl"
+          className="max-h-40 flex-1 resize-none overflow-auto rounded-2xl bg-slate-700 p-4 text-xl text-gray-200"
           id="messageBox"
         ></div>
         <button
-          className="h-14 w-14 flex-none rounded-2xl bg-slate-200"
+          className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
           // Bit inefficient but oh well...
           onClick={() =>
             alert(document.getElementById("messageBox").textContent)
           }
         >
-          SEND
+          -&gt;
         </button>
       </div>
     </div>
