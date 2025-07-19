@@ -1,16 +1,24 @@
 import { useParams } from "react-router";
 import { Message } from "../Components/Message";
 import { Back } from "../Components/Back";
+import { useState } from "react";
 
 export function Chat() {
   const { userId } = useParams();
 
-  const messages = [
+  const [messages, setMessages] = useState([
     { text: "Winston...", time: "10:20" },
     { text: "...", time: "10:22" },
     { text: "Winston...", time: "10:26" },
     { text: "Consequences.", time: "19:51" },
-  ];
+  ]);
+
+  function sendMessage() {
+    let data = document.getElementById("messageBox").textContent;
+    if (data.length == 0) return;
+
+    setMessages([...messages, { text: data, time: "00:00" }]);
+  }
 
   return (
     <div className="flex h-screen flex-col bg-slate-900">
@@ -40,10 +48,7 @@ export function Chat() {
         ></div>
         <button
           className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
-          // Bit inefficient but oh well...
-          onClick={() =>
-            alert(document.getElementById("messageBox").textContent)
-          }
+          onClick={sendMessage}
         >
           -&gt;
         </button>
