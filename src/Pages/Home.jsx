@@ -1,16 +1,10 @@
 import { Profile } from "../Components/Profile";
 import { useState } from "react";
 import { Link } from "react-router";
+import { profiles } from "../data";
 
 export function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const profiles = [
-    { id: 1, name: "John Wick", pfp: "/vite.svg" },
-    { id: 2, name: "Wilson Cheung", pfp: "/vite.svg" },
-    { id: 3, name: "Xi Nan Shu", pfp: "/vite.svg" },
-    { id: 4, name: "Stephen Chou", pfp: "/vite.svg" },
-  ];
 
   const handleSearch = (e) => {
     e.preventDefault();
