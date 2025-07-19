@@ -3,6 +3,16 @@ import { Message } from "../Components/Message";
 import { Back } from "../Components/Back";
 import { useState } from "react";
 
+let ws = new WebSocket(`ws://localhost:8000/ws/0`);
+
+function sendMessage() {
+  let data = document.getElementById("messageBox").textContent;
+  if (data.length == 0) return;
+
+  // addMessage(data, Date.now());
+  ws.send(data);
+}
+
 export function Chat() {
   const { userId } = useParams();
 
@@ -11,15 +21,12 @@ export function Chat() {
   ]);
 
   function addMessage(text, time) {
-    setMessages([...messages, { text: text, time: time }]);
+    setMessages((messages) => messages.concat([{ text: text, time: time }]));
   }
 
-  function sendMessage() {
-    let data = document.getElementById("messageBox").textContent;
-    if (data.length == 0) return;
-
-    addMessage(data, Date.now());
-  }
+  ws.onmessage = (e) => {
+    addMessage(e.data, Date.now());
+  };
 
   return (
     <div className="flex h-screen flex-col bg-slate-900">

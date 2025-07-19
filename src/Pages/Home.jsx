@@ -44,7 +44,7 @@ export function Home() {
       </div>
       <div className="flex flex-col gap-4 p-4">
         {profiles.map((person) => (
-          <Profile person={person} key={person.id} />
+          <Profile person={person} />
         ))}
       </div>
     </div>
