@@ -7,6 +7,7 @@ let ws = new WebSocket(`ws://localhost:8000/ws/0`);
 
 function sendMessage() {
   let data = document.getElementById("messageBox").textContent;
+  document.getElementById("messageBox").textContent = "";
   if (data.length == 0) return;
 
   // addMessage(data, Date.now());
