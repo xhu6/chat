@@ -42,7 +42,7 @@ export function Chat() {
         </p>
       </div>
 
-      <div className="flex-1 pt-10">
+      <div className="flex-1 overflow-auto pt-10">
         {messages.map((msg) => (
           <Message msg={msg}></Message>
         ))}
