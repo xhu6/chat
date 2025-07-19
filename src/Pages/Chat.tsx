@@ -6,8 +6,11 @@ import { useState } from "react";
 let ws = new WebSocket(`ws://localhost:8000/ws/0`);
 
 function sendMessage() {
-  let data = document.getElementById("messageBox").textContent;
-  document.getElementById("messageBox").textContent = "";
+  let box = document.getElementById("messageBox");
+  if (box == null) return;
+
+  let data = box.textContent ?? "";
+  box.textContent = "";
   if (data.length == 0) return;
 
   // addMessage(data, Date.now());
