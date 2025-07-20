@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 
 import { Profile } from "../components/Profile";
@@ -7,16 +7,14 @@ import { profiles } from "../data";
 export function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (e: FormEvent) => {
-    e.preventDefault();
+  const handleSearch = () => {
     alert(searchQuery);
-    setSearchQuery("");
   };
 
   return (
     <div className="flex h-screen flex-col bg-slate-900">
       <div className="flex-none gap-4 bg-slate-800 p-4">
-        <form onSubmit={handleSearch} className="flex gap-4">
+        <div className="flex gap-4">
           <input
             type="text"
             placeholder="Search"
@@ -25,7 +23,7 @@ export function Home() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <button type="submit" className="flex-none text-white">
+          <button className="flex-none text-white" onClick={handleSearch}>
             Search
           </button>
 
@@ -35,7 +33,7 @@ export function Home() {
           >
             ...
           </Link>
-        </form>
+        </div>
       </div>
       <div className="flex flex-col gap-4 p-4">
         {profiles.map((person) => (
