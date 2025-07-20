@@ -13,7 +13,7 @@ export function Home() {
   };
 
   return (
-    <div className="home flex h-screen flex-col bg-slate-900">
+    <div className="flex h-screen flex-col bg-slate-900">
       <div className="flex-none gap-4 bg-slate-800 p-4">
         <form onSubmit={handleSearch} className="flex gap-4">
           <input

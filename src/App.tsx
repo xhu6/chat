@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router";
 function App() {
   return (
     <div>
-      <main className="main-content">
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/settings" element={<Settings />} />
