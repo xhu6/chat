@@ -1,4 +1,4 @@
-import { getUserId, callbackUserId } from "./data";
+import { getUserId } from "./data";
 
 let ws: WebSocket | undefined;
 
@@ -10,10 +10,8 @@ export function getWs() {
   return ws;
 }
 
-export function restartWs(x: number) {
+export function restartWs() {
   ws?.close();
 
-  ws = new WebSocket(`ws://localhost:8000/ws/${x}`);
+  ws = new WebSocket(`ws://localhost:8000/ws/${getUserId()}`);
 }
-
-callbackUserId(restartWs);

@@ -6,7 +6,6 @@ export let profiles = [
 ];
 
 let userId = 1;
-let callbacks: ((value: number) => void)[] = [];
 
 export function getUserId() {
   return userId;
@@ -14,10 +13,4 @@ export function getUserId() {
 
 export function setUserId(value: number) {
   userId = value;
-
-  callbacks.forEach((f) => f(userId));
-}
-
-export function callbackUserId(f: (value: number) => void) {
-  callbacks.push(f);
 }
