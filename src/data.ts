@@ -25,13 +25,16 @@ export let profiles = [
 ];
 
 // messages
+type Message = { text: string, time: number };
 
-let messages = [{ text: "Consequences.", time: 0 }];
+let convs: Map<number, Message[]> = new Map();
 
-export function getMessages() {
-  return [...messages];
+export function getConv(conv_id: number) {
+  return [...convs.get(conv_id) ?? []];
 }
 
-export function addMessage(text: string, time: number) {
-  messages.push({ text: text, time: time });
+export function addMsg(conv_id: number, text: string, time: number) {
+  let conv = convs.get(conv_id) ?? [];
+  conv.push({ text: text, time: time });
+  convs.set(conv_id, conv);
 }

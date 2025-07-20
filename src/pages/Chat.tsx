@@ -4,28 +4,32 @@ import { useState } from "react";
 import { Message } from "../components/Message";
 import { Back } from "../components/Back";
 import { getWs } from "../connection";
-import { getMessages, addMessage } from "../data";
+import { getConv, addMsg, getUserId } from "../data";
 
-function sendMessage() {
+function sendMessage(userId: number) {
   let box = document.getElementById("messageBox");
   if (box == null) return;
 
-  let data = box.textContent ?? "";
+  let text = box.textContent ?? "";
   box.textContent = "";
-  if (data.length == 0) return;
+  if (text.length == 0) return;
 
-  // addMessage(data, Date.now());
-  getWs().send(data);
+  getWs().send(JSON.stringify({ users: [getUserId(), userId], text: text }));
 }
 
 export function Chat() {
-  const { userId } = useParams();
+  const param = useParams();
+  const userId = Number(param.userId);
 
-  const [msgs, setMsgs] = useState(getMessages);
+  const [msgs, setMsgs] = useState(getConv(userId));
 
   getWs().onmessage = (e) => {
-    addMessage(e.data, Date.now());
-    setMsgs(getMessages);
+    const data: {users: number[], text: string } = JSON.parse(e.data);
+
+    const other = data.users.filter(x => x != getUserId())[0];
+
+    addMsg(other, data.text, Date.now());
+    setMsgs(getConv(userId));
   };
 
   return (
@@ -56,7 +60,7 @@ export function Chat() {
         ></div>
         <button
           className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
-          onClick={sendMessage}
+          onClick={() => sendMessage(userId)}
         >
           -&gt;
         </button>
