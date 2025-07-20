@@ -1,3 +1,7 @@
+import { load } from "@tauri-apps/plugin-store";
+
+const store = await load("store.json");
+
 export let profiles = [
   { id: 1, name: "John Wick", pfp: "/vite.svg" },
   { id: 2, name: "Wilson Cheung", pfp: "/vite.svg" },
@@ -5,7 +9,7 @@ export let profiles = [
   { id: 4, name: "Stephen Chou", pfp: "/vite.svg" },
 ];
 
-let userId = 1;
+let userId = (await store.get<number>("userId")) ?? 1;
 
 export function getUserId() {
   return userId;
@@ -13,4 +17,5 @@ export function getUserId() {
 
 export function setUserId(value: number) {
   userId = value;
+  store.set("userId", value);
 }
