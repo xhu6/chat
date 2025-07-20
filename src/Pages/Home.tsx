@@ -1,12 +1,12 @@
 import { Profile } from "../Components/Profile";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { Link } from "react-router";
 import { profiles } from "../data";
 
 export function Home() {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     alert(searchQuery);
     setSearchQuery("");

@@ -1,6 +1,10 @@
 import { Link } from "react-router";
 
-export function Profile({ person }) {
+export function Profile({
+  person,
+}: {
+  person: { id: number; name: string; pfp: string };
+}) {
   return (
     <Link to={`/chat/${person.id}`}>
       <div className="rounded-lg border border-slate-700 bg-slate-800 p-4 transition-colors hover:bg-slate-700 hover:text-white">

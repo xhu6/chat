@@ -24,7 +24,7 @@ export function Chat() {
     { text: "Consequences.", time: 0 },
   ]);
 
-  function addMessage(text, time) {
+  function addMessage(text: string, time: number) {
     setMessages((messages) => messages.concat([{ text: text, time: time }]));
   }
 

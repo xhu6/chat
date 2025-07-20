@@ -1,4 +1,4 @@
-export function Message({ msg }) {
+export function Message({ msg }: { msg: { time: number; text: string } }) {
   let date = new Date(msg.time);
   return (
     <div className="bg-slate-900 px-4 py-2 text-gray-200">
