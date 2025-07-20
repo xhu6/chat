@@ -2,8 +2,7 @@ import { useParams } from "react-router";
 import { Message } from "../Components/Message";
 import { Back } from "../Components/Back";
 import { useState } from "react";
-
-let ws = new WebSocket(`ws://localhost:8000/ws/0`);
+import { getWs } from "../connection";
 
 function sendMessage() {
   let box = document.getElementById("messageBox");
@@ -14,7 +13,7 @@ function sendMessage() {
   if (data.length == 0) return;
 
   // addMessage(data, Date.now());
-  ws.send(data);
+  getWs().send(data);
 }
 
 export function Chat() {
@@ -28,7 +27,7 @@ export function Chat() {
     setMessages((messages) => messages.concat([{ text: text, time: time }]));
   }
 
-  ws.onmessage = (e) => {
+  getWs().onmessage = (e) => {
     addMessage(e.data, Date.now());
   };
 
