@@ -1,4 +1,5 @@
 import { Back } from "../components/Back";
+import { getUserId, setUserId } from "../data";
 
 export function Settings() {
   return (
@@ -27,6 +28,14 @@ export function Settings() {
           contentEditable="true"
         >
           Description
+        </div>
+
+        <div
+          className="rounded-2xl bg-slate-700 p-4 text-gray-200"
+          contentEditable="true"
+          onInput={(e) => setUserId(Number(e.currentTarget.textContent))}
+        >
+          {getUserId()}
         </div>
       </div>
     </div>
