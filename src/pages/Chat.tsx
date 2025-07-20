@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Message } from "../components/Message";
 import { Back } from "../components/Back";
 import { getWs } from "../connection";
+import { getMessages, addMessage } from "../data";
 
 function sendMessage() {
   let box = document.getElementById("messageBox");
@@ -20,16 +21,11 @@ function sendMessage() {
 export function Chat() {
   const { userId } = useParams();
 
-  const [messages, setMessages] = useState([
-    { text: "Consequences.", time: 0 },
-  ]);
-
-  function addMessage(text: string, time: number) {
-    setMessages((messages) => messages.concat([{ text: text, time: time }]));
-  }
+  const [msgs, setMsgs] = useState(getMessages);
 
   getWs().onmessage = (e) => {
     addMessage(e.data, Date.now());
+    setMsgs(getMessages);
   };
 
   return (
@@ -47,7 +43,7 @@ export function Chat() {
       </div>
 
       <div className="flex-1 overflow-auto pt-10">
-        {messages.map((msg) => (
+        {msgs.map((msg) => (
           <Message msg={msg}></Message>
         ))}
       </div>
