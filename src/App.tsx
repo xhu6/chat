@@ -1,8 +1,9 @@
-import "./App.css";
-import { Home } from "./Pages/Home";
-import { Settings } from "./Pages/Settings";
-import { Chat } from "./Pages/Chat";
 import { Routes, Route } from "react-router";
+
+import "./App.css";
+import { Home } from "./pages/Home";
+import { Settings } from "./pages/Settings";
+import { Chat } from "./pages/Chat";
 
 function App() {
   return (

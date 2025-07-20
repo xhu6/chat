@@ -1,7 +1,8 @@
 import { useParams } from "react-router";
-import { Message } from "../Components/Message";
-import { Back } from "../Components/Back";
 import { useState } from "react";
+
+import { Message } from "../components/Message";
+import { Back } from "../components/Back";
 import { getWs } from "../connection";
 
 function sendMessage() {

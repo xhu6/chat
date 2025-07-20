@@ -1,6 +1,7 @@
-import { Profile } from "../Components/Profile";
 import { FormEvent, useState } from "react";
 import { Link } from "react-router";
+
+import { Profile } from "../components/Profile";
 import { profiles } from "../data";
 
 export function Home() {
