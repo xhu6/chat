@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Message } from "../components/Message";
 import { Back } from "../components/Back";
 import { getWs } from "../connection";
-import { getConv, addMsg, getUserId } from "../data";
+import { getConv, addMsg } from "../data";
 
 function sendMessage(userId: number) {
   let box = document.getElementById("messageBox");
@@ -14,7 +14,9 @@ function sendMessage(userId: number) {
   box.textContent = "";
   if (text.length == 0) return;
 
-  getWs().send(JSON.stringify({ users: [getUserId(), userId], text: text }));
+  getWs().send(
+    JSON.stringify({ type: "send[direct]", dest: userId, content: text }),
+  );
 }
 
 export function Chat() {
@@ -24,11 +26,15 @@ export function Chat() {
   const [msgs, setMsgs] = useState(getConv(userId));
 
   getWs().onmessage = (e) => {
-    const data: {users: number[], text: string } = JSON.parse(e.data);
+    const data: {
+      type: string;
+      sender: number;
+      content: string;
+      timestamp: number;
+      id: number;
+    } = JSON.parse(e.data);
 
-    const other = data.users.filter(x => x != getUserId())[0];
-
-    addMsg(other, data.text, Date.now());
+    addMsg(data.sender, data.content, data.timestamp);
     setMsgs(getConv(userId));
   };
 
