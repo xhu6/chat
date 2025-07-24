@@ -15,7 +15,7 @@ function sendMessage(userId: number) {
   if (text.length == 0) return;
 
   getWs().send(
-    JSON.stringify({ type: "send[direct]", dest: userId, content: text }),
+    JSON.stringify({ type: "send[direct]", dest_id: userId, content: text }),
   );
 }
 
