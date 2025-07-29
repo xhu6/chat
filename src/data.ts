@@ -23,18 +23,3 @@ export let profiles = [
   { id: 3, name: "Xi Nan Shu", pfp: "/vite.svg" },
   { id: 4, name: "Stephen Chou", pfp: "/vite.svg" },
 ];
-
-// messages
-type Message = { text: string; time: number };
-
-let convs: Map<number, Message[]> = new Map();
-
-export function getConv(conv_id: number) {
-  return [...(convs.get(conv_id) ?? [])];
-}
-
-export function addMsg(conv_id: number, text: string, time: number) {
-  let conv = convs.get(conv_id) ?? [];
-  conv.push({ text: text, time: time });
-  convs.set(conv_id, conv);
-}

@@ -1,10 +1,11 @@
 import { useParams } from "react-router";
-import { useState } from "react";
 
 import { Message } from "../components/Message";
 import { Back } from "../components/Back";
+
 import { getWs } from "../connection";
-import { getConv, addMsg, getUserId } from "../data";
+import { ChatsContext } from "../contexts/ChatsContext";
+import { useContext } from "react";
 
 function sendMessage(userId: number) {
   let box = document.getElementById("messageBox");
@@ -22,27 +23,8 @@ function sendMessage(userId: number) {
 export function Chat() {
   const param = useParams();
   const userId = Number(param.userId);
-
-  const [msgs, setMsgs] = useState(getConv(userId));
-
-  getWs().onmessage = (e) => {
-    const data: {
-      type: string;
-      sender: number;
-      recipient: number;
-      content: string;
-      timestamp: number;
-      id: number;
-    } = JSON.parse(e.data);
-
-    if (data.sender == getUserId()) {
-      addMsg(data.recipient, data.content, data.timestamp);
-    } else {
-      addMsg(data.sender, data.content, data.timestamp);
-    }
-
-    setMsgs(getConv(userId));
-  };
+  const { chats } = useContext(ChatsContext);
+  const messages = chats.get(userId) ?? [];
 
   return (
     <div className="flex h-screen flex-col bg-slate-900">
@@ -59,8 +41,8 @@ export function Chat() {
       </div>
 
       <div className="flex-1 overflow-auto pt-10">
-        {msgs.map((msg) => (
-          <Message msg={msg}></Message>
+        {messages.map((message) => (
+          <Message message={message}></Message>
         ))}
       </div>
 
