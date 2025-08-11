@@ -36,8 +36,8 @@ export function HomePage() {
         </div>
       </div>
       <div className="flex flex-col gap-4 p-4">
-        {profiles.map((person) => (
-          <ProfileCard person={person} />
+        {profiles.map((person, index) => (
+          <ProfileCard person={person} key={index} />
         ))}
       </div>
     </div>

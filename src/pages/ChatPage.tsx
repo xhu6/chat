@@ -47,8 +47,8 @@ export function ChatPage() {
       </div>
 
       <div className="flex-1 overflow-auto pt-10">
-        {messages.map((message) => (
-          <MessageItem message={message} />
+        {messages.map((message, index) => (
+          <MessageItem message={message} key={index} />
         ))}
       </div>
 
