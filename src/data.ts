@@ -1,19 +1,19 @@
-import { load } from "@tauri-apps/plugin-store";
+// import { load } from "@tauri-apps/plugin-store";
 
-const store = await load("store.json");
+// const store = await load("store.json");
 
 // userId
 
-let userId = (await store.get<number>("userId")) ?? 1;
+// let userId = (await store.get<number>("userId")) ?? 1;
 
-export function getUserId() {
-  return userId;
-}
+// export function getUserId() {
+//   return userId;
+// }
 
-export function setUserId(value: number) {
-  userId = value;
-  store.set("userId", value);
-}
+// export function setUserId(value: number) {
+//   userId = value;
+//   store.set("userId", value);
+// }
 
 // profiles
 

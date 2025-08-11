@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Routes, Route, BrowserRouter, Outlet } from "react-router";
 
 import "./App.css";
@@ -7,17 +8,19 @@ import { SettingsPage } from "./pages/SettingsPage";
 import { ChatPage } from "./pages/ChatPage";
 
 import { useChatsStore } from "./stores/ChatsStore";
-
-import { getUserId } from "./data";
-import { getWs } from "./connection";
-import { useEffect } from "react";
+import { useUserIdStore } from "./stores/UserIdStore";
+import { useWsStore } from "./stores/WsStore";
 
 function Networking() {
   const addMessage = useChatsStore((state) => state.addMessage);
+  const userId = useUserIdStore((state) => state.userId);
+  const setURL = useWsStore((state) => state.setURL);
+  const setCallback = useWsStore((state) => state.setCallback);
 
-  // TODO: recognise when getWs changes and rerun this
   useEffect(() => {
-    getWs().onmessage = (e) => {
+    setURL(`ws://localhost:8000/ws/${userId}`);
+
+    setCallback((e) => {
       const raw_data = JSON.parse(e.data);
 
       if (raw_data.type == "recv[direct]") {
@@ -30,8 +33,7 @@ function Networking() {
           seq_no: number;
         } = raw_data;
 
-        const otherUser =
-          data.sender == getUserId() ? data.recipient : data.sender;
+        const otherUser = data.sender == userId ? data.recipient : data.sender;
 
         const message = {
           sender: data.sender,
@@ -41,8 +43,8 @@ function Networking() {
 
         addMessage(otherUser, data.seq_no, message);
       }
-    };
-  });
+    });
+  }, [userId]);
 
   return <div></div>;
 }

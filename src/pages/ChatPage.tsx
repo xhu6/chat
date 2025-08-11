@@ -3,27 +3,34 @@ import { useParams } from "react-router";
 import { MessageItem } from "../components/MessageItem";
 import { BackButton } from "../components/BackButton";
 
-import { getWs } from "../connection";
+import { useWsStore } from "../stores/WsStore";
 import { useChatsStore } from "../stores/ChatsStore";
-
-function sendMessage(userId: number) {
-  let box = document.getElementById("messageBox");
-  if (box == null) return;
-
-  let text = box.textContent ?? "";
-  box.textContent = "";
-  if (text.length == 0) return;
-
-  getWs().send(
-    JSON.stringify({ type: "send[direct]", recipient: userId, content: text }),
-  );
-}
 
 export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
+
   const chats = useChatsStore((state) => state.chats);
   const messages = chats.get(userId) ?? [];
+
+  const send = useWsStore((state) => state.send);
+
+  function sendMessage() {
+    let box = document.getElementById("messageBox");
+    if (box == null) return;
+
+    let text = box.textContent ?? "";
+    box.textContent = "";
+    if (text.length == 0) return;
+
+    send(
+      JSON.stringify({
+        type: "send[direct]",
+        recipient: userId,
+        content: text,
+      }),
+    );
+  }
 
   return (
     <div className="flex h-screen flex-col bg-slate-900">
@@ -53,7 +60,7 @@ export function ChatPage() {
         ></div>
         <button
           className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
-          onClick={() => sendMessage(userId)}
+          onClick={sendMessage}
         >
           -&gt;
         </button>

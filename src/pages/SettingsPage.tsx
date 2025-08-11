@@ -1,8 +1,10 @@
 import { BackButton } from "../components/BackButton";
-import { getUserId, setUserId } from "../data";
-import { restartWs } from "../connection";
+import { useUserIdStore } from "../stores/UserIdStore";
 
 export function SettingsPage() {
+  const userId = useUserIdStore((state) => state.userId);
+  const setUserId = useUserIdStore((state) => state.setUserId);
+
   return (
     <div className="h-screen bg-slate-900 p-4">
       <div className="flex gap-4 p-2">
@@ -36,10 +38,9 @@ export function SettingsPage() {
           contentEditable="true"
           onInput={(e) => {
             setUserId(Number(e.currentTarget.textContent));
-            restartWs();
           }}
         >
-          {getUserId()}
+          {userId}
         </div>
       </div>
     </div>
