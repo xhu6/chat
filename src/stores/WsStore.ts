@@ -11,15 +11,32 @@ interface WsState {
 export const useWsStore = create<WsState>()(() => {
   let ws: WebSocket | undefined;
   let onMessage: Callback | undefined;
+  let timeoutID: number | undefined;
+
+  function setURL(url: string) {
+    if (ws != undefined) {
+      clearTimeout(timeoutID);
+      ws.onclose = null;
+      ws.close();
+    }
+
+    ws = new WebSocket(url);
+
+    if (onMessage != undefined) ws.onmessage = onMessage;
+
+    ws.onclose = () => {
+      timeoutID = setTimeout(() => {
+        setURL(url);
+      }, 500);
+    };
+
+    ws.onerror = () => {
+      ws?.close();
+    };
+  }
 
   return {
-    setURL: (url: string) => {
-      ws?.close();
-
-      ws = new WebSocket(url);
-
-      if (onMessage != undefined) ws.onmessage = onMessage;
-    },
+    setURL: setURL,
 
     send: (data: string) => {
       ws?.send(data);
