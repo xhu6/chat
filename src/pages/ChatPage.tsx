@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { useParams } from "react-router";
 
-import { Message } from "../components/Message";
+import { MessageItem } from "../components/MessageItem";
 import { Back } from "../components/Back";
 
 import { getWs } from "../connection";
 import { ChatsContext } from "../contexts/ChatsContext";
-import { useContext } from "react";
 
 function sendMessage(userId: number) {
   let box = document.getElementById("messageBox");
@@ -20,7 +20,7 @@ function sendMessage(userId: number) {
   );
 }
 
-export function Chat() {
+export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
   const { chats } = useContext(ChatsContext);
@@ -42,7 +42,7 @@ export function Chat() {
 
       <div className="flex-1 overflow-auto pt-10">
         {messages.map((message) => (
-          <Message message={message}></Message>
+          <MessageItem message={message} />
         ))}
       </div>
 
