@@ -60,7 +60,7 @@ function NetworkStatus() {
 
   return (
     <div
-      className={`text-center font-bold text-white transition-[height] duration-500 ${style}`}
+      className={`overflow-hidden text-center font-bold text-white transition-[height] duration-500 ${style}`}
     >
       {connected ? "Online" : "Offline"}
     </div>
