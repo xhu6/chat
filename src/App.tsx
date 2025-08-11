@@ -73,11 +73,11 @@ function App() {
       <Routes>
         <Route
           element={
-            <>
+            <div className="flex h-screen w-screen flex-col bg-slate-900">
               <Networking />
               <NetworkStatus />
               <Outlet />
-            </>
+            </div>
           }
         >
           <Route path="/" element={<HomePage />} />

@@ -33,7 +33,7 @@ export function ChatPage() {
   }
 
   return (
-    <div className="flex h-screen flex-col bg-slate-900">
+    <div className="flex h-full flex-col bg-slate-900">
       <div className="flex flex-none gap-4 bg-slate-800 p-4">
         <BackButton></BackButton>
         <img

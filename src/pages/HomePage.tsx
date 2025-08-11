@@ -12,7 +12,7 @@ export function HomePage() {
   };
 
   return (
-    <div className="flex h-screen flex-col bg-slate-900">
+    <div>
       <div className="flex-none gap-4 bg-slate-800 p-4">
         <div className="flex gap-4">
           <input

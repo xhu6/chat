@@ -6,9 +6,9 @@ export function SettingsPage() {
   const setUserId = useUserIdStore((state) => state.setUserId);
 
   return (
-    <div className="h-screen bg-slate-900 p-4">
+    <div className="h-full p-4">
       <div className="flex gap-4 p-2">
-        <BackButton></BackButton>
+        <BackButton />
         <p className="content-center text-4xl font-bold text-white">Settings</p>
       </div>
 
