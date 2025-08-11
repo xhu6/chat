@@ -8,7 +8,7 @@ interface WsState {
   setCallback: (callback: Callback) => void;
 }
 
-export const useWsStore = create<WsState>()((set) => {
+export const useWsStore = create<WsState>()(() => {
   let ws: WebSocket | undefined;
   let onMessage: Callback | undefined;
 
