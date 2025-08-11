@@ -4,11 +4,12 @@ type Callback = (msg: MessageEvent) => void;
 
 interface WsState {
   setURL: (url: string) => void;
-  send: (data: string) => void;
   setCallback: (callback: Callback) => void;
+  send: (data: string) => void;
+  connected: boolean;
 }
 
-export const useWsStore = create<WsState>()(() => {
+export const useWsStore = create<WsState>()((set) => {
   let ws: WebSocket | undefined;
   let onMessage: Callback | undefined;
   let timeoutID: number | undefined;
@@ -24,7 +25,12 @@ export const useWsStore = create<WsState>()(() => {
 
     if (onMessage != undefined) ws.onmessage = onMessage;
 
+    ws.onopen = () => {
+      set({ connected: true });
+    };
+
     ws.onclose = () => {
+      set({ connected: false });
       timeoutID = setTimeout(() => {
         setURL(url);
       }, 500);
@@ -38,12 +44,14 @@ export const useWsStore = create<WsState>()(() => {
   return {
     setURL: setURL,
 
+    setCallback: (callback: Callback) => {
+      onMessage = callback;
+    },
+
     send: (data: string) => {
       ws?.send(data);
     },
 
-    setCallback: (callback: Callback) => {
-      onMessage = callback;
-    },
+    connected: false,
   };
 });
