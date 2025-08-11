@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useParams } from "react-router";
 
 import { MessageItem } from "../components/MessageItem";
-import { Back } from "../components/Back";
+import { BackButton } from "../components/BackButton";
 
 import { getWs } from "../connection";
 import { ChatsContext } from "../contexts/ChatsContext";
@@ -29,7 +29,7 @@ export function ChatPage() {
   return (
     <div className="flex h-screen flex-col bg-slate-900">
       <div className="flex flex-none gap-4 bg-slate-800 p-4">
-        <Back></Back>
+        <BackButton></BackButton>
         <img
           className="h-12 w-12"
           src="/vite.svg"

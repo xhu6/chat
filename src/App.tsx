@@ -1,8 +1,8 @@
 import { Routes, Route, Outlet } from "react-router";
 
 import "./App.css";
-import { Home } from "./pages/Home";
-import { Settings } from "./pages/Settings";
+import { HomePage } from "./pages/HomePage";
+import { SettingsPage } from "./pages/SettingsPage";
 import { ChatPage } from "./pages/ChatPage";
 
 import { getUserId } from "./data";
@@ -57,8 +57,8 @@ function App() {
               </ChatsProvider>
             }
           >
-            <Route path="/" element={<Home />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/chat/:userId" element={<ChatPage />} />
           </Route>
         </Routes>

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-export function Profile({
+export function ProfileCard({
   person,
 }: {
   person: { id: number; name: string; pfp: string };

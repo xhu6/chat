@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-import { Profile } from "../components/Profile";
+import { ProfileCard } from "../components/ProfileCard";
 import { profiles } from "../data";
 
-export function Home() {
+export function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = () => {
@@ -37,7 +37,7 @@ export function Home() {
       </div>
       <div className="flex flex-col gap-4 p-4">
         {profiles.map((person) => (
-          <Profile person={person} />
+          <ProfileCard person={person} />
         ))}
       </div>
     </div>

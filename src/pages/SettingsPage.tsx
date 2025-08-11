@@ -1,12 +1,12 @@
-import { Back } from "../components/Back";
+import { BackButton } from "../components/BackButton";
 import { getUserId, setUserId } from "../data";
 import { restartWs } from "../connection";
 
-export function Settings() {
+export function SettingsPage() {
   return (
     <div className="h-screen bg-slate-900 p-4">
       <div className="flex gap-4 p-2">
-        <Back></Back>
+        <BackButton></BackButton>
         <p className="content-center text-4xl font-bold text-white">Settings</p>
       </div>
 
