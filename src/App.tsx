@@ -1,4 +1,5 @@
 import { Routes, Route, Outlet } from "react-router";
+import { BrowserRouter } from "react-router";
 
 import "./App.css";
 import { HomePage } from "./pages/HomePage";
@@ -46,24 +47,22 @@ function Networking() {
 
 function App() {
   return (
-    <div>
-      <main>
-        <Routes>
-          <Route
-            element={
-              <ChatsProvider>
-                <Networking />
-                <Outlet />
-              </ChatsProvider>
-            }
-          >
-            <Route path="/" element={<HomePage />} />
-            <Route path="/settings" element={<SettingsPage />} />
-            <Route path="/chat/:userId" element={<ChatPage />} />
-          </Route>
-        </Routes>
-      </main>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          element={
+            <ChatsProvider>
+              <Networking />
+              <Outlet />
+            </ChatsProvider>
+          }
+        >
+          <Route path="/" element={<HomePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/chat/:userId" element={<ChatPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
