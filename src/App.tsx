@@ -1,19 +1,21 @@
-import { Routes, Route, Outlet } from "react-router";
-import { BrowserRouter } from "react-router";
+import { Routes, Route, BrowserRouter, Outlet } from "react-router";
 
 import "./App.css";
+
 import { HomePage } from "./pages/HomePage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { ChatPage } from "./pages/ChatPage";
 
+import { useChatsStore } from "./stores/ChatsStore";
+
 import { getUserId } from "./data";
 import { getWs } from "./connection";
-import { ChatsContext, ChatsProvider } from "./contexts/ChatsContext";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 function Networking() {
-  const { addMessage } = useContext(ChatsContext);
+  const addMessage = useChatsStore((state) => state.addMessage);
 
+  // TODO: recognise when getWs changes and rerun this
   useEffect(() => {
     getWs().onmessage = (e) => {
       const raw_data = JSON.parse(e.data);
@@ -51,10 +53,10 @@ function App() {
       <Routes>
         <Route
           element={
-            <ChatsProvider>
+            <>
               <Networking />
               <Outlet />
-            </ChatsProvider>
+            </>
           }
         >
           <Route path="/" element={<HomePage />} />

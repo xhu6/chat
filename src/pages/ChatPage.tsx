@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { useParams } from "react-router";
 
 import { MessageItem } from "../components/MessageItem";
 import { BackButton } from "../components/BackButton";
 
 import { getWs } from "../connection";
-import { ChatsContext } from "../contexts/ChatsContext";
+import { useChatsStore } from "../stores/ChatsStore";
 
 function sendMessage(userId: number) {
   let box = document.getElementById("messageBox");
@@ -23,7 +22,7 @@ function sendMessage(userId: number) {
 export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
-  const { chats } = useContext(ChatsContext);
+  const chats = useChatsStore((state) => state.chats);
   const messages = chats.get(userId) ?? [];
 
   return (
