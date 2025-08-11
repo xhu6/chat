@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-import { ProfileCard } from "../components/ProfileCard";
-import { profiles } from "../data";
+import { UserCard } from "../components/UserCard";
+
+import { useUsersStore } from "../stores/UsersStore";
 
 export function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,8 +12,10 @@ export function HomePage() {
     alert(searchQuery);
   };
 
+  const usersById = useUsersStore((state) => state.byId);
+
   return (
-    <div>
+    <div className="bg-slate-900">
       <div className="flex-none gap-4 bg-slate-800 p-4">
         <div className="flex gap-4">
           <input
@@ -36,8 +39,8 @@ export function HomePage() {
         </div>
       </div>
       <div className="flex flex-col gap-4 p-4">
-        {profiles.map((person, index) => (
-          <ProfileCard person={person} key={index} />
+        {[...usersById.values()].map((user, index) => (
+          <UserCard user={user} key={index} />
         ))}
       </div>
     </div>

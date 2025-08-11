@@ -5,10 +5,13 @@ import { BackButton } from "../components/BackButton";
 
 import { useWsStore } from "../stores/WsStore";
 import { useChatsStore } from "../stores/ChatsStore";
+import { useUsersStore } from "../stores/UsersStore";
 
 export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
+  const usersById = useUsersStore((state) => state.byId);
+  const user = usersById.get(userId);
 
   const chats = useChatsStore((state) => state.chats);
   const messages = chats.get(userId) ?? [];
@@ -38,11 +41,11 @@ export function ChatPage() {
         <BackButton />
         <img
           className="h-12 w-12"
-          src="/vite.svg"
+          src={user?.pfp ?? "/tauri.svg"}
           alt="John Wick's profile picture."
         />
         <p className="content-center text-3xl font-bold text-gray-200">
-          {userId}
+          {user?.name ?? "Unknown user"}
         </p>
       </div>
 
