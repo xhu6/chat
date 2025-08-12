@@ -12,7 +12,7 @@ export function HomePage() {
     alert(searchQuery);
   };
 
-  const usersById = useUsersStore((state) => state.byId);
+  const users = useUsersStore((state) => state.users);
 
   return (
     <div className="bg-slate-900">
@@ -39,7 +39,7 @@ export function HomePage() {
         </div>
       </div>
       <div className="flex flex-col gap-4 p-4">
-        {[...usersById.values()].map((user, index) => (
+        {[...users.values()].map((user, index) => (
           <UserCard user={user} key={index} />
         ))}
       </div>

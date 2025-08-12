@@ -10,8 +10,8 @@ import { useUsersStore } from "../stores/UsersStore";
 export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
-  const usersById = useUsersStore((state) => state.byId);
-  const user = usersById.get(userId);
+  const users = useUsersStore((state) => state.users);
+  const user = users.get(userId);
 
   const chats = useChatsStore((state) => state.chats);
   const messages = chats.get(userId) ?? [];
