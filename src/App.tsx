@@ -46,7 +46,7 @@ function Networking() {
         addMessage(otherUser, data.seq_no, message);
       }
     });
-  }, [userId]);
+  });
 
   return <div></div>;
 }

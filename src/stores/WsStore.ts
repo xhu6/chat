@@ -24,7 +24,8 @@ export const useWsStore = create<WsState>()((set) => {
 
     ws = new WebSocket(url);
 
-    ws.onmessage = onMessage;
+    // Use indirection so callback can be changed after ws created
+    ws.onmessage = (e) => (onMessage ? onMessage(e) : undefined);
 
     ws.onopen = () => {
       set({ connected: true });
