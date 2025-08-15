@@ -46,7 +46,8 @@ function Networking() {
         addMessage(otherUser, data.seq_no, message);
       }
     });
-  });
+  }, [userId, addMessage]);
+  // addMessage should be constant anyway
 
   return <div></div>;
 }
