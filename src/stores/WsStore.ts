@@ -1,5 +1,7 @@
 import { create } from "zustand";
 
+import { Queue } from "../utils/queue";
+
 type Callback = (msg: MessageEvent) => void;
 
 interface WsState {
@@ -9,18 +11,24 @@ interface WsState {
   connected: boolean;
 }
 
+const CONNECTION_COOLDOWN = 500;
+
 export const useWsStore = create<WsState>()((set) => {
   let ws: WebSocket | undefined;
   let onMessage: Callback | null = null;
-  let timeoutID: number | undefined;
+  let reconnectTimeout: number | undefined;
+  let queue = new Queue<string>();
 
-  function setURL(url: string) {
-    // Clean up previous ws if called externally
+  function disconnect() {
     if (ws != undefined) {
-      clearTimeout(timeoutID);
+      clearTimeout(reconnectTimeout);
       ws.onclose = null;
       ws.close();
     }
+  }
+
+  function connect(url: string) {
+    disconnect();
 
     ws = new WebSocket(url);
 
@@ -28,13 +36,26 @@ export const useWsStore = create<WsState>()((set) => {
     ws.onmessage = (e) => (onMessage ? onMessage(e) : undefined);
 
     ws.onopen = () => {
+      // TODO: auth logic
+
+      console.log(queue);
+
+      let data = queue.front();
+      while (data != undefined) {
+        // Not undefined since in onopen
+        ws!.send(data);
+
+        queue.pop();
+        data = queue.front();
+      }
+
       set({ connected: true });
     };
 
     ws.onclose = () => {
-      timeoutID = setTimeout(() => {
-        setURL(url);
-      }, 500); // Try to reconnect this many ms
+      reconnectTimeout = setTimeout(() => {
+        connect(url);
+      }, CONNECTION_COOLDOWN);
 
       set({ connected: false });
     };
@@ -45,14 +66,18 @@ export const useWsStore = create<WsState>()((set) => {
   }
 
   return {
-    setURL: setURL,
+    setURL: connect,
 
     setCallback: (callback: Callback | null) => {
       onMessage = callback;
     },
 
     send: (data: string) => {
-      ws?.send(data);
+      if (ws != undefined && ws.readyState == ws.OPEN) {
+        ws.send(data);
+      } else {
+        queue.push(data);
+      }
     },
 
     connected: false,

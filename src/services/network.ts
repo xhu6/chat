@@ -19,12 +19,10 @@ export function initNetworking() {
 
   connectWs();
 
-  const data = JSON.stringify({
-    type: "update",
-    timestamp: 0
-  });
-
-  // Temporary fix is waiting 200ms for ws to be setup
-  // TODO: allow send even when disconnected
-  setTimeout(() => send(data), 200);
+  send(
+    JSON.stringify({
+      type: "update",
+      timestamp: 0,
+    }),
+  );
 }
