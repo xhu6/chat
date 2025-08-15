@@ -1,45 +1,48 @@
-import { useEffect } from "react";
 import { useChatsStore } from "./stores/ChatsStore";
 import { useUserIdStore } from "./stores/UserIdStore";
 import { useWsStore } from "./stores/WsStore";
 
-export function Networking() {
-  const addMessage = useChatsStore((state) => state.addMessage);
+// TODO: Support more actions
+function callback(e: MessageEvent) {
+  const addMessage = useChatsStore.getState().addMessage;
+  const userId = useUserIdStore.getState().userId;
 
-  const userId = useUserIdStore((state) => state.userId);
+  const raw_data = JSON.parse(e.data);
 
-  const setURL = useWsStore((state) => state.setURL);
-  const setCallback = useWsStore((state) => state.setCallback);
+  if (raw_data.type == "recv[direct]") {
+    const data: {
+      type: string;
+      sender: number;
+      recipient: number;
+      content: string;
+      timestamp: number;
+      seq_no: number;
+    } = raw_data;
 
-  useEffect(() => {
-    setURL(`ws://localhost:8000/ws/${userId}`);
+    const otherUser = data.sender == userId ? data.recipient : data.sender;
 
-    setCallback((e) => {
-      const raw_data = JSON.parse(e.data);
+    const message = {
+      sender: data.sender,
+      content: data.content,
+      timestamp: data.timestamp,
+    };
 
-      if (raw_data.type == "recv[direct]") {
-        const data: {
-          type: string;
-          sender: number;
-          recipient: number;
-          content: string;
-          timestamp: number;
-          seq_no: number;
-        } = raw_data;
+    addMessage(otherUser, data.seq_no, message);
+  }
+}
 
-        const otherUser = data.sender == userId ? data.recipient : data.sender;
+function connectWs() {
+  const { setURL } = useWsStore.getState();
+  const userId = useUserIdStore.getState().userId;
 
-        const message = {
-          sender: data.sender,
-          content: data.content,
-          timestamp: data.timestamp,
-        };
+  setURL(`ws://localhost:8000/ws/${userId}`);
+}
 
-        addMessage(otherUser, data.seq_no, message);
-      }
-    });
-  }, [userId, addMessage]);
-  // addMessage should be constant anyway
+export function initNetworking() {
+  const { setCallback } = useWsStore.getState();
+  setCallback(callback);
 
-  return <div></div>;
+  connectWs();
+  useUserIdStore.subscribe(connectWs);
+  // Reconnect when userId changes
 }

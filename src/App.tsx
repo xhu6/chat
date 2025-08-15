@@ -1,6 +1,5 @@
 import { Routes, Route, BrowserRouter, Outlet } from "react-router";
 
-import { Networking } from "./network";
 import { NetworkStatus } from "./components/NetworkStatus";
 
 import { HomePage } from "./pages/HomePage";
@@ -16,7 +15,6 @@ function App() {
         <Route
           element={
             <div className="flex h-screen w-screen flex-col bg-slate-900">
-              <Networking />
               <NetworkStatus />
               <Outlet />
             </div>
