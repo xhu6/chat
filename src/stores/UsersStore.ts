@@ -4,7 +4,7 @@ export type User = { id: number; name: string; pfp?: string };
 
 interface UsersState {
   users: Map<number, User>;
-  addUser: (user: User) => void;
+  setUser: (user: User) => void;
 }
 
 let users = [
@@ -17,7 +17,7 @@ let users = [
 export const useUsersStore = create<UsersState>()((set) => ({
   users: new Map(users.map((user) => [user.id, user])),
 
-  addUser: (user: User) => {
+  setUser: (user: User) => {
     set((state) => {
       // Copy to force re-render
       const users = new Map(state.users);

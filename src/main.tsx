@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 
 import App from "./App";
 
-import { initNetworking } from "./network";
+import { initNetworking } from "./services/network";
 
 initNetworking();
 
