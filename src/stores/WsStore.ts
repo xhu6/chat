@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { Queue } from "../utils/queue";
+import { Queue } from "utils/queue";
 
 type Callback = (msg: MessageEvent) => void;
 

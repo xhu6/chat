@@ -1,4 +1,4 @@
-import { Message } from "../stores/ChatsStore";
+import { Message } from "stores/ChatsStore";
 
 export function MessageItem({ message }: { message: Message }) {
   let date = new Date(message.timestamp);

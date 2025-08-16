@@ -1,10 +1,10 @@
 import { Routes, Route, BrowserRouter, Outlet } from "react-router";
 
-import { NetworkStatus } from "./components/NetworkStatus";
+import { NetworkStatus } from "components/NetworkStatus";
 
-import { HomePage } from "./pages/HomePage";
-import { SettingsPage } from "./pages/SettingsPage";
-import { ChatPage } from "./pages/ChatPage";
+import { HomePage } from "pages/home/HomePage";
+import { SettingsPage } from "pages/settings/SettingsPage";
+import { ChatPage } from "pages/chat/ChatPage";
 
 import "./App.css";
 

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router";
 
-import { UserCard } from "../components/UserCard";
+import { useUsersStore } from "stores/UsersStore";
 
-import { useUsersStore } from "../stores/UsersStore";
+import { UserCard } from "./UserCard";
 
 export function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");

@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 
-import { User } from "../stores/UsersStore";
+import { User } from "stores/UsersStore";
 
 export function UserCard({ user }: { user: User }) {
   return (

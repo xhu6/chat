@@ -1,5 +1,5 @@
-import { BackButton } from "../components/BackButton";
-import { useUserIdStore } from "../stores/UserIdStore";
+import { useUserIdStore } from "stores/UserIdStore";
+import { BackButton } from "components/BackButton";
 
 export function SettingsPage() {
   const userId = useUserIdStore((state) => state.userId);

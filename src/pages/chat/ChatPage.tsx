@@ -1,11 +1,11 @@
 import { useParams } from "react-router";
 
-import { MessageItem } from "../components/MessageItem";
-import { BackButton } from "../components/BackButton";
+import { useWsStore } from "stores/WsStore";
+import { useChatsStore } from "stores/ChatsStore";
+import { useUsersStore } from "stores/UsersStore";
 
-import { useWsStore } from "../stores/WsStore";
-import { useChatsStore } from "../stores/ChatsStore";
-import { useUsersStore } from "../stores/UsersStore";
+import { MessageItem } from "./MessageItem";
+import { BackButton } from "components/BackButton";
 
 export function ChatPage() {
   const param = useParams();
@@ -63,7 +63,7 @@ export function ChatPage() {
           onPaste={(e) => {
             e.preventDefault();
             let data = e.clipboardData.getData("text/plain");
-            
+
             // Deprecated but is easiest solution for now.
             document.execCommand("insertText", false, data);
           }}

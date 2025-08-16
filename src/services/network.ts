@@ -1,5 +1,5 @@
-import { useUserIdStore } from "../stores/UserIdStore";
-import { useWsStore } from "../stores/WsStore";
+import { useUserIdStore } from "stores/UserIdStore";
+import { useWsStore } from "stores/WsStore";
 
 import { handle } from "./handler";
 

@@ -1,6 +1,6 @@
-import { useChatsStore } from "../stores/ChatsStore";
-import { useUserIdStore } from "../stores/UserIdStore";
-import { useUsersStore } from "../stores/UsersStore";
+import { useChatsStore } from "stores/ChatsStore";
+import { useUserIdStore } from "stores/UserIdStore";
+import { useUsersStore } from "stores/UsersStore";
 
 function recvDirect(data: any) {
   const addMessage = useChatsStore.getState().addMessage;

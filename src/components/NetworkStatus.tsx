@@ -1,4 +1,4 @@
-import { useWsStore } from "../stores/WsStore";
+import { useWsStore } from "stores/WsStore";
 
 export function NetworkStatus() {
   const connected = useWsStore((state) => state.connected);
