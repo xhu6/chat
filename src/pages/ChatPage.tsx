@@ -60,6 +60,13 @@ export function ChatPage() {
           contentEditable="true"
           className="max-h-40 flex-1 resize-none overflow-auto rounded-2xl bg-slate-700 p-4 text-xl text-gray-200"
           id="messageBox"
+          onPaste={(e) => {
+            e.preventDefault();
+            let data = e.clipboardData.getData("text/plain");
+            
+            // Deprecated but is easiest solution for now.
+            document.execCommand("insertText", false, data);
+          }}
         ></div>
         <button
           className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
