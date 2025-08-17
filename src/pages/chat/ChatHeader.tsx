@@ -3,8 +3,7 @@ import { useUsersStore } from "stores/UsersStore";
 import { BackButton } from "components/BackButton";
 
 export function ChatHeader({ userId }: { userId: number }) {
-  const users = useUsersStore((state) => state.users);
-  const user = users.get(userId);
+  const user = useUsersStore((state) => state.users.get(userId));
 
   return (
     <div className="flex h-20 gap-4 bg-slate-800 p-4">
