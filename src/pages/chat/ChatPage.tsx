@@ -7,6 +7,8 @@ import { useUsersStore } from "stores/UsersStore";
 import { MessageItem } from "./MessageItem";
 import { BackButton } from "components/BackButton";
 
+import sendIcon from "assets/icons/send_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg";
+
 export function ChatPage() {
   const param = useParams();
   const userId = Number(param.userId);
@@ -69,10 +71,10 @@ export function ChatPage() {
           }}
         ></div>
         <button
-          className="h-14 w-14 flex-none rounded-2xl bg-slate-700 text-white"
+          className="h-14 w-14 flex-none rounded-2xl bg-slate-700"
           onClick={sendMessage}
         >
-          -&gt;
+          <img src={sendIcon} alt="" className="m-auto h-8" />
         </button>
       </div>
     </div>

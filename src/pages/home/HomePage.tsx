@@ -5,6 +5,9 @@ import { useUsersStore } from "stores/UsersStore";
 
 import { UserCard } from "./UserCard";
 
+import settingsIcon from "assets/icons/settings_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg";
+import searchIcon from "assets/icons/search_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.svg";
+
 export function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -26,15 +29,12 @@ export function HomePage() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <button className="flex-none text-white" onClick={handleSearch}>
-            Search
+          <button className="flex-none" onClick={handleSearch}>
+            <img src={searchIcon} alt="" className="h-8" />
           </button>
 
-          <Link
-            to={"/Settings"}
-            className="flex-none text-xl font-medium text-white hover:text-slate-200"
-          >
-            ...
+          <Link to={"/Settings"} className="flex-none content-center">
+            <img src={settingsIcon} alt="" className="h-8" />
           </Link>
         </div>
       </div>

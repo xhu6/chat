@@ -13,3 +13,7 @@
 body {
   font-family: "Roboto", Helvetica, sans-serif;
 }
+
+img {
+  pointer-events: none;
+}
