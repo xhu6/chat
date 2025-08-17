@@ -1,1 +1,15 @@
 @import "tailwindcss";
+
+@font-face {
+  font-family: "Roboto";
+  font-display: swap;
+  src:
+    url("/Roboto/Roboto-VariableFont_wdth\,wght.ttf") format("truetype"),
+    /* From Google's API*/
+      url("https://fonts.gstatic.com/s/roboto/v48/KFO7CnqEu92Fr1ME7kSn66aGLdTylUAMa3yUBA.woff2")
+      format("woff2");
+}
+
+body {
+  font-family: "Roboto", Helvetica, sans-serif;
+}
