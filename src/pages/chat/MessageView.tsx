@@ -13,14 +13,15 @@ function MessageItem({ message }: { message: Message }) {
 }
 
 export function MessageView({ userId }: { userId: number }) {
-  const chats = useChatsStore((state) => state.chats);
-  const messages = chats.get(userId) ?? [];
+  const messages = useChatsStore((state) => state.chats.get(userId)) ?? [];
 
   return (
     <div className="flex-1 overflow-auto pt-10">
-      {messages.map((message, index) => (
-        <MessageItem message={message} key={index} />
-      ))}
+      {messages
+        .filter((e) => e != undefined)
+        .map((message, index) => (
+          <MessageItem message={message} key={index} />
+        ))}
     </div>
   );
 }

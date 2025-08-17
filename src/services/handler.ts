@@ -24,8 +24,6 @@ function recvDirect(data: any) {
   const otherUser =
     request.sender == userId ? request.recipient : request.sender;
 
-  console.log(otherUser);
-
   addMessage(otherUser, request.seq_no, {
     sender: request.sender,
     content: request.content,
