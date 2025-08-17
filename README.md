@@ -1,7 +1,7 @@
-# Tauri + React
+# Chat
 
-This template should help get you started developing with Tauri and React in Vite.
+An instant messaging client. The server can be found [here](https://github.com/DullMathsMaster/Chat-Server).
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+Resources
+- [Roboto](https://fonts.google.com/specimen/Roboto)
+- [Icons](https://fonts.google.com/icons?selected=Material+Symbols+Rounded:settings:FILL@0;wght@400;GRAD@0;opsz@24&icon.style=Rounded&icon.size=24&icon.color=%23e3e3e3)
