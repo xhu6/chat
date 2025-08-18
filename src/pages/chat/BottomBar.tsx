@@ -37,7 +37,7 @@ function MessageBox() {
   return (
     <div
       contentEditable="true"
-      className="max-h-40 flex-1 resize-none overflow-auto rounded-2xl bg-slate-700 p-4 text-xl text-gray-200"
+      className="max-h-40 flex-1 overflow-x-clip overflow-y-scroll rounded-2xl bg-slate-700 p-4 text-xl wrap-break-word text-gray-200 outline-0"
       id="messageBox"
       onPaste={(e) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ function MessageBox() {
 
 export function BottomBar({ userId }: { userId: number }) {
   return (
-    <div className="flex content-center gap-4 p-4">
+    <div className="bottom-0 flex w-full content-center gap-4 px-4 pb-2">
       <MessageBox />
       <SendButton userId={userId} />
     </div>
